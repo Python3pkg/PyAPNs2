@@ -86,7 +86,7 @@ class ClientTestCase(TestCase):
             ['Success'] * 1000 + ['BadDeviceToken'] * 500 + ['PayloadTooLarge'] * 4500
         )
         results = self.client.send_notification_batch(self.notifications, self.topic)
-        expected_results = dict(zip(self.tokens, self.mock_results))
+        expected_results = dict(list(zip(self.tokens, self.mock_results)))
         self.assertEqual(results, expected_results)
 
     def test_send_empty_batch_does_nothing(self):
